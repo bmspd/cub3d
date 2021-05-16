@@ -2,9 +2,10 @@
 
 static void	check_all(t_win *win)
 {
-	if (win->height == 0 || win->width == 0 || MAP->floor_color == -1
-		|| MAP->ceiling_color == -1 || !EAST_T->path || !WEST_T->path
-		|| !SOUTH_T->path || !NORTH_T->path || !SPRITE->path)
+	if (win->height == 0 || win->width == 0 || win->map->floor_color == -1
+		|| win->map->ceiling_color == -1 || !win->texture_east->path
+		|| !win->texture_west->path || !win->texture_south->path
+		|| !win->texture_north->path || !win->sprite->path)
 	{
 		invalid_data_error(3);
 	}
@@ -16,15 +17,15 @@ static void	check_map_symbols(t_win *win)
 	int	j;
 
 	i = 0;
-	while (MAP->map[i])
+	while (win->map->map[i])
 	{
 		j = 0;
-		while (MAP->map[i][j])
+		while (win->map->map[i][j])
 		{
-			if (MAP->map[i][j] != '0' && MAP->map[i][j] != '1'
-			&& MAP->map[i][j] != '2' && MAP->map[i][j] != 'N'
-			&& MAP->map[i][j] != 'W' && MAP->map[i][j] != 'E'
-			&& MAP->map[i][j] != 'S')
+			if (win->map->map[i][j] != '0' && win->map->map[i][j] != '1'
+			&& win->map->map[i][j] != '2' && win->map->map[i][j] != 'N'
+			&& win->map->map[i][j] != 'W' && win->map->map[i][j] != 'E'
+			&& win->map->map[i][j] != 'S')
 			{
 				invalid_data_error(3);
 			}
@@ -68,9 +69,9 @@ char	**map_parsing(t_win *win, char **map, int *j, int size)
 		i++;
 	}
 	ft_lstadd_back(&head, ft_lstnew(*map));
-	MAP->map = make_map(&head, ft_lstsize(head));
+	win->map->map = make_map(&head, ft_lstsize(head));
 	check_map_symbols(win);
-	check_map = make_map_copy(MAP->map, ft_lstsize(head));
+	check_map = make_map_copy(win->map->map, ft_lstsize(head));
 	set_player_pos(win, head, check_map);
 	count_sprites(win);
 	placing_sprite_coordinats(win);

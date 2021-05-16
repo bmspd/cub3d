@@ -4,14 +4,15 @@ SRCS			= 	main.c keys.c ray_casting.c properties_parsing.c error_msg.c \
 				 	map_parsing.c resolution_parsing.c draw_floor_ceiling.c \
 				 	set_player_pos.c sprite.c draw_sprites.c screenshot.c \
 				 	check_arguments.c initions.c create_rgb.c push_img_or_screenshot.c \
-				 	make_img_textures.c make_map.c init_main_window.c put_pixel_to_img.c
+				 	make_img_textures.c make_map.c init_main_window.c put_pixel_to_img.c \
+				 	take_color_part.c
 DIR_S			= src
 SOURCE			=$(addprefix $(DIR_S)/,$(SRCS))
 OBJS			= $(SOURCE:.c=.o)
 HEADER			= ./includes/cub3d.h
 CC				= gcc
 RM				= rm -f
-CFLAGS			= -I $(HEADER)
+CFLAGS			= -Wall -Werror -Wextra -I $(HEADER)
 
 NAME			= cub3D
 

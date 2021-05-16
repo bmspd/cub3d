@@ -47,8 +47,8 @@ int	main(int argc, char **argv)
 	init_window(&win);
 	mlx_get_screen_size(win->win, &win->p_width, &win->p_height);
 	parsing_file(map, win, ft_lstsize(head));
-	RAY->zbuffer = malloc(sizeof(double) * win->width);
-	if (!(RAY->zbuffer))
+	win->ray->zbuffer = malloc(sizeof(double) * win->width);
+	if (!(win->ray->zbuffer))
 		invalid_data_error(2);
 	win->mlx = mlx_init();
 	make_img_textures(win);

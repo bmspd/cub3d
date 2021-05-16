@@ -1,24 +1,4 @@
 #include "../includes/cub3d.h"
-static int	biggest_str_len(char **map, int size)
-{
-	int	lmax;
-	int	i;
-	int	current_len;
-
-	i = 0;
-	lmax = 0;
-	while (i < size)
-	{
-		if (!map[i])
-			current_len = 0;
-		else
-			current_len = (int)ft_strlen(map[i]);
-		if (current_len > lmax)
-			lmax = (int)ft_strlen(map[i]);
-		i++;
-	}
-	return (lmax);
-}
 
 char	**make_map_copy(char **map, int size)
 {

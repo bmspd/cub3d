@@ -6,13 +6,13 @@ void	count_sprites(t_win *win)
 	int	j;
 
 	i = 0;
-	while (MAP->map[i])
+	while (win->map->map[i])
 	{
 		j = 0;
-		while (MAP->map[i][j])
+		while (win->map->map[i][j])
 		{
-			if (MAP->map[i][j] == '2')
-				MAP->sprite_number++;
+			if (win->map->map[i][j] == '2')
+				win->map->sprite_number++;
 			j++;
 		}
 		i++;
@@ -25,19 +25,19 @@ void	placing_sprite_coordinats(t_win *win)
 	int	x;
 	int	y;
 
-	win->spr_coords = malloc (sizeof(t_sprite *) * MAP->sprite_number);
+	win->spr_coords = malloc (sizeof(t_sprite *) * win->map->sprite_number);
 	i = 0;
 	x = 0;
-	while (MAP->map[x])
+	while (win->map->map[x])
 	{
 		y = 0;
-		while (MAP->map[x][y])
+		while (win->map->map[x][y])
 		{
-			if (MAP->map[x][y] == '2')
+			if (win->map->map[x][y] == '2')
 			{
-				SPRITEi = malloc (sizeof(t_sprite));
-				SPRITEi->x = y;
-				SPRITEi->y = x;
+				win->spr_coords[i] = malloc (sizeof(t_sprite));
+				win->spr_coords[i]->x = y;
+				win->spr_coords[i]->y = x;
 				i++;
 			}
 			y++;
@@ -53,10 +53,10 @@ void	sprite_sorting(t_win *win)
 	t_sprite	*temp;
 
 	i = 0;
-	while (i < MAP->sprite_number)
+	while (i < win->map->sprite_number)
 	{
 		j = 0;
-		while (j < MAP->sprite_number - i - 1)
+		while (j < win->map->sprite_number - i - 1)
 		{
 			if (win->spr_coords[j]->sprite_distance
 				< win->spr_coords[j + 1]->sprite_distance)

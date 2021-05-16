@@ -15,7 +15,6 @@ int	rgb_atoi(const char *str)
 	int				i;
 	int				sign;
 	unsigned long	nbr;
-	unsigned long	overflow;
 
 	nbr = 0;
 	sign = 1;

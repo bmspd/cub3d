@@ -11,9 +11,9 @@ static void	make_img_tex(t_win *win, t_tex *tex)
 
 void	make_img_textures(t_win *win)
 {
-	make_img_tex(win, EAST_T);
-	make_img_tex(win, WEST_T);
-	make_img_tex(win, SOUTH_T);
-	make_img_tex(win, NORTH_T);
-	make_img_tex(win, SPRITE);
+	make_img_tex(win, win->texture_east);
+	make_img_tex(win, win->texture_west);
+	make_img_tex(win, win->texture_south);
+	make_img_tex(win, win->texture_north);
+	make_img_tex(win, win->sprite);
 }

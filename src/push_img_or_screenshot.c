@@ -8,28 +8,28 @@ static int	first_render(t_win *win)
 			&win->bits_per_pixel, &win->line_length, &win->endian);
 	while (win->x < win->width)
 	{
-		RAY->camera_x = 2 * win->x / (double)win->width - 1;
-		RAY->ray_dir_x = PLAYER->dir_x
-			+ PLAYER->plane_x * RAY->camera_x;
-		RAY->ray_dir_y = PLAYER->dir_y
-			+ PLAYER->plane_y * RAY->camera_x;
-		RAY->map_x = (int) PLAYER->posx;
-		RAY->map_y = (int) PLAYER->posy;
-		RAY->delta_dist_x = fabs(1 / RAY->ray_dir_x);
-		RAY->delta_dist_y = fabs(1 / RAY->ray_dir_y);
-		RAY->hit = 0;
+		win->ray->camera_x = 2 * win->x / (double)win->width - 1;
+		win->ray->ray_dir_x = win->player->dir_x
+			+ win->player->plane_x * win->ray->camera_x;
+		win->ray->ray_dir_y = win->player->dir_y
+			+ win->player->plane_y * win->ray->camera_x;
+		win->ray->map_x = (int) win->player->posx;
+		win->ray->map_y = (int) win->player->posy;
+		win->ray->delta_dist_x = fabs(1 / win->ray->ray_dir_x);
+		win->ray->delta_dist_y = fabs(1 / win->ray->ray_dir_y);
+		win->ray->hit = 0;
 		calculate_side_dist(win);
 		dda_algorithm(win);
 		perpendicular_wall_distance(win);
 		draw_pixel_lines(win, win->x);
 		draw_floor_ceiling(win, win->x);
-		RAY->zbuffer[win->x++] = RAY->perp_wall_dist;
+		win->ray->zbuffer[win->x++] = win->ray->perp_wall_dist;
 	}
 	sprite_drawing(win);
-	screenshot(win);
+	return (screenshot(win));
 }
 
-void	push_or_screen(t_win *win)
+int	push_or_screen(t_win *win)
 {
 	int	differ;
 
@@ -47,4 +47,5 @@ void	push_or_screen(t_win *win)
 		first_render(win);
 		exit(1);
 	}
+	return (1);
 }

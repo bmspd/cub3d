@@ -52,7 +52,7 @@ void	put_bmp_pixels(t_win *win, int fd)
 	}
 }
 
-void	screenshot(t_win *win)
+int	screenshot(t_win *win)
 {
 	unsigned int	headers[13];
 	int				fd;
@@ -73,4 +73,5 @@ void	screenshot(t_win *win)
 	put_bmp_header(headers, fd);
 	put_bmp_pixels(win, fd);
 	close(fd);
+	return (1);
 }

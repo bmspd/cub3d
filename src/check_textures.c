@@ -6,7 +6,7 @@ void	check_north_texture(char *str, t_win *win)
 	int	j;
 	int	len;
 
-	if (NORTH_T->path != NULL)
+	if (win->texture_north->path != NULL)
 		invalid_data_error(3);
 	i = 0;
 	j = 0;
@@ -17,11 +17,11 @@ void	check_north_texture(char *str, t_win *win)
 	while (str[i] == ' ')
 		i++;
 	len = (int)ft_strlen(&str[i]);
-	NORTH_T->path = ft_calloc(len + 1, sizeof(char));
-	if (!NORTH_T->path)
+	win->texture_north->path = ft_calloc(len + 1, sizeof(char));
+	if (!win->texture_north->path)
 		invalid_data_error(2);
 	while (str[i])
-		NORTH_T->path[j++] = str[i++];
+		win->texture_north->path[j++] = str[i++];
 }
 
 void	check_south_texture(char *str, t_win *win)
@@ -30,7 +30,7 @@ void	check_south_texture(char *str, t_win *win)
 	int	j;
 	int	len;
 
-	if (SOUTH_T->path != NULL)
+	if (win->texture_south->path != NULL)
 		invalid_data_error(3);
 	i = 0;
 	j = 0;
@@ -41,11 +41,11 @@ void	check_south_texture(char *str, t_win *win)
 	while (str[i] == ' ')
 		i++;
 	len = (int)ft_strlen(&str[i]);
-	SOUTH_T->path = ft_calloc(len + 1, sizeof(char));
-	if (!SOUTH_T->path)
+	win->texture_south->path = ft_calloc(len + 1, sizeof(char));
+	if (!win->texture_south->path)
 		invalid_data_error(2);
 	while (str[i])
-		SOUTH_T->path[j++] = str[i++];
+		win->texture_south->path[j++] = str[i++];
 }
 
 void	check_west_texture(char *str, t_win *win)
@@ -54,7 +54,7 @@ void	check_west_texture(char *str, t_win *win)
 	int	j;
 	int	len;
 
-	if (WEST_T->path != NULL)
+	if (win->texture_west->path != NULL)
 		invalid_data_error(3);
 	i = 0;
 	j = 0;
@@ -65,11 +65,11 @@ void	check_west_texture(char *str, t_win *win)
 	while (str[i] == ' ')
 		i++;
 	len = (int)ft_strlen(&str[i]);
-	WEST_T->path = ft_calloc(len + 1, sizeof(char));
-	if (!WEST_T->path)
+	win->texture_west->path = ft_calloc(len + 1, sizeof(char));
+	if (!win->texture_west->path)
 		invalid_data_error(2);
 	while (str[i])
-		WEST_T->path[j++] = str[i++];
+		win->texture_west->path[j++] = str[i++];
 }
 
 void	check_east_texture(char *str, t_win *win)
@@ -78,7 +78,7 @@ void	check_east_texture(char *str, t_win *win)
 	int	j;
 	int	len;
 
-	if (EAST_T->path != NULL)
+	if (win->texture_east->path != NULL)
 		invalid_data_error(3);
 	i = 0;
 	j = 0;
@@ -89,11 +89,11 @@ void	check_east_texture(char *str, t_win *win)
 	while (str[i] == ' ')
 		i++;
 	len = (int)ft_strlen(&str[i]);
-	EAST_T->path = ft_calloc(len + 1, sizeof(char));
-	if (!EAST_T->path)
+	win->texture_east->path = ft_calloc(len + 1, sizeof(char));
+	if (!win->texture_east->path)
 		invalid_data_error(2);
 	while (str[i])
-		EAST_T->path[j++] = str[i++];
+		win->texture_east->path[j++] = str[i++];
 }
 
 void	check_sprite(char *str, t_win *win)
@@ -102,7 +102,7 @@ void	check_sprite(char *str, t_win *win)
 	int	j;
 	int	len;
 
-	if (SPRITE->path != NULL)
+	if (win->sprite->path != NULL)
 		invalid_data_error(3);
 	i = 0;
 	j = 0;
@@ -113,9 +113,9 @@ void	check_sprite(char *str, t_win *win)
 	while (str[i] == ' ')
 		i++;
 	len = (int)ft_strlen(&str[i]);
-	SPRITE->path = ft_calloc(len + 1, sizeof(char));
-	if (!SPRITE->path)
+	win->sprite->path = ft_calloc(len + 1, sizeof(char));
+	if (!win->sprite->path)
 		invalid_data_error(2);
 	while (str[i])
-		SPRITE->path[j++] = str[i++];
+		win->sprite->path[j++] = str[i++];
 }
