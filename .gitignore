@@ -1,0 +1,10 @@
+cmake-build-debug
+TEST
+TEST2
+CMakeLists.txt
+map0.cub
+screen.bmp
+testing.c
+.DS_Store
+.idea
+.gitignore
