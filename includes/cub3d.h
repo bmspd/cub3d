@@ -174,4 +174,10 @@ void	calculate_side_dist(t_win *win);
 void	dda_algorithm(t_win *win);
 void	perpendicular_wall_distance(t_win *win);
 void	draw_pixel_lines(t_win *win, int x);
+
+int	check_empty_string(char *string, t_win *win);
+
+int is_space(char c);
+
+void pass_tabs(char **string, t_win *win);
 #endif

@@ -25,7 +25,7 @@ static void	check_map_symbols(t_win *win)
 			if (win->map->map[i][j] != '0' && win->map->map[i][j] != '1'
 			&& win->map->map[i][j] != '2' && win->map->map[i][j] != 'N'
 			&& win->map->map[i][j] != 'W' && win->map->map[i][j] != 'E'
-			&& win->map->map[i][j] != 'S')
+			&& win->map->map[i][j] != 'S' && win->map->map[i][j] != ' ')
 			{
 				invalid_data_error(3);
 			}

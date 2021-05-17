@@ -35,17 +35,17 @@ void	put_bmp_pixels(t_win *win, int fd)
 	int	x;
 	int	z;
 
-	z = 0;
+	z = ft_strlen(win->addr);
 	y = win->height;
 	while (y > 0)
 	{
 		x = 0;
 		while (x < win->width)
 		{
-			ft_putchar_fd(win->addr[z], fd);
-			ft_putchar_fd(win->addr[z + 1], fd);
-			ft_putchar_fd(win->addr[z + 2], fd);
-			z = z + 4;
+			ft_putchar_fd(win->addr[z -3], fd);
+			ft_putchar_fd(win->addr[z - 2], fd);
+			ft_putchar_fd(win->addr[z - 1], fd);
+			z = z - 4;
 			x++;
 		}
 		y--;

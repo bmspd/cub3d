@@ -22,7 +22,7 @@ void	check_arguments(int argc, char **argv)
 		if (ft_strncmp(&argv[1][i], ".cub", 4))
 			invalid_data_error(1);
 	}
-	else if (argc == 3 && ft_strncmp(argv[2], "--save", 6))
+	else if (argc == 3 && ft_strncmp(argv[2], "--save", 7))
 		invalid_data_error(1);
 	else
 		return ;

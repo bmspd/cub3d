@@ -8,3 +8,5 @@ testing.c
 .DS_Store
 .idea
 .gitignore
+wolftex
+cub3d_destroyer

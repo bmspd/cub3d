@@ -80,12 +80,11 @@ void	parsing_file(char **map, t_win *win, int size)
 	j = 0;
 	while (j < size)
 	{
-		if (**map == '\0')
+		pass_tabs(map, win);
+		if (check_empty_string(*map, win) || **map == '\0')
 		{
 			map++;
 			j++;
-			if (j == size)
-				break ;
 			continue ;
 		}
 		else if (check_properties(map, win, &j, size))

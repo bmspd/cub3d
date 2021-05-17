@@ -6,33 +6,34 @@ static void	check_repeating(t_win *win)
 		invalid_data_error(3);
 }
 
-static void	move_to_next_nbr(char *map, int *i, int flag)
+static int	number_len(int nbr)
 {
-	if (map[*i] == '+')
-		(*i)++;
-	while (ft_isdigit(map[*i]))
-		(*i)++;
-	if (flag == 1)
-		return ;
-	while (map[*i] == ' ')
-		(*i)++;
-	if (map[*i] == ',')
-		(*i)++;
-	while (map[*i] == ' ')
-		(*i)++;
+	int	i;
+
+	i = 0;
+	if (nbr == 0)
+		return (1);
+	while (nbr > 0)
+	{
+		nbr = nbr / 10;
+		i++;
+	}
+	return (i);
 }
 
-static int	init_color_number(char *map, int *i, int flag)
+static int	take_part_color(char *map, int *i)
 {
-	int	color_letter;
+	int	rgb;
 
-	color_letter = 0;
-	if (ft_isdigit(map[*i]) || map[*i] == '-' || map[*i] == '+')
-		color_letter = rgb_atoi(&map[*i]);
-	else
+	while (is_space(map[*i]))
+		(*i)++;
+	if (!ft_isdigit(map[*i]))
 		invalid_data_error(3);
-	move_to_next_nbr(map, i, flag);
-	return (color_letter);
+	rgb = rgb_atoi(&map[*i]);
+	*i = *i + number_len(rgb);
+	while (is_space(map[*i]))
+		(*i)++;
+	return (rgb);
 }
 
 void	ceiling_rgb_color(char *map, t_win *win)
@@ -44,17 +45,17 @@ void	ceiling_rgb_color(char *map, t_win *win)
 
 	i = 1;
 	check_repeating(win);
-	while (map[i] == ' ')
-		i++;
-	r = init_color_number(map, &i, 0);
-	g = init_color_number(map, &i, 0);
-	b = init_color_number(map, &i, 1);
-	while (map[i] != '\0')
-	{
-		if (map[i] != ' ')
-			invalid_data_error(3);
-		i++;
-	}
+	r = take_part_color(map, &i);
+	if (map[i] != ',')
+		invalid_data_error(3);
+	i++;
+	g = take_part_color(map, &i);
+	if (map[i] != ',')
+		invalid_data_error(3);
+	i++;
+	b = take_part_color(map, &i);
+	if (map[i] != '\0')
+		invalid_data_error(3);
 	if (r < 0 || g < 0 || b < 0)
 		invalid_data_error(3);
 	win->map->ceiling_color = create_rgb(r, g, b);

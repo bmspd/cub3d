@@ -5,7 +5,7 @@ SRCS			= 	main.c keys.c ray_casting.c properties_parsing.c error_msg.c \
 				 	set_player_pos.c sprite.c draw_sprites.c screenshot.c \
 				 	check_arguments.c initions.c create_rgb.c push_img_or_screenshot.c \
 				 	make_img_textures.c make_map.c init_main_window.c put_pixel_to_img.c \
-				 	take_color_part.c
+				 	take_color_part.c is_space.c properties_parsing2.c
 DIR_S			= src
 SOURCE			=$(addprefix $(DIR_S)/,$(SRCS))
 OBJS			= $(SOURCE:.c=.o)

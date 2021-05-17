@@ -19,6 +19,8 @@ void	take_resolution(char *map, t_win *win)
 	pass_spaces_number(map, &i);
 	win->height = ft_atoi(&map[i]);
 	pass_spaces_number(map, &i);
+	while (is_space(map[i]))
+		i++;
 	if (map[i] != '\0')
 		invalid_data_error(0);
 	if (win->height <= 0 || win->width <= 0)

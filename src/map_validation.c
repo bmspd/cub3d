@@ -7,7 +7,7 @@ void	map_validation(char **check_map, int size, int x, int y)
 		return ;
 	}
 	if (x == 0 || y == 0 || x == size - 1 || (check_map[x][y] != '1'
-		&& check_map[x][y] != '0' &&check_map[x][y] != '2'))
+		&& check_map[x][y] != '0' && check_map[x][y] != '2'))
 		invalid_data_error(0);
 	if (check_map[x][y] == '0' || check_map[x][y] == '2')
 		check_map[x][y] = 'F';
