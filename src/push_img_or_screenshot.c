@@ -31,19 +31,12 @@ static int	first_render(t_win *win)
 
 int	push_or_screen(t_win *win)
 {
-	int	differ;
-
 	if (win->win)
 	{
 		mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);
 	}
 	else
 	{
-		differ = win->width % 64;
-		if (win->width < 64)
-			win->width = 64;
-		else
-			win->width = win->width + differ;
 		first_render(win);
 		exit(1);
 	}

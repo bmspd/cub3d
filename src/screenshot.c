@@ -29,25 +29,39 @@ void	put_bmp_header(unsigned const int *headers, int fd)
 	}
 }
 
-void	put_bmp_pixels(t_win *win, int fd)
+static void	put_extrabytes(int extrabytes, int fd)
+{
+	int	n;
+
+	n = 0;
+	while (n < extrabytes)
+	{
+		ft_putchar_fd(0, fd);
+		n++;
+	}
+}
+
+void	put_bmp_pixels(t_win *win, int fd, int extrabytes)
 {
 	int	y;
 	int	x;
 	int	z;
 
-	z = ft_strlen(win->addr);
 	y = win->height;
 	while (y > 0)
 	{
 		x = 0;
+		z = (win->line_length) * (y - 1);
 		while (x < win->width)
 		{
-			ft_putchar_fd(win->addr[z -3], fd);
-			ft_putchar_fd(win->addr[z - 2], fd);
-			ft_putchar_fd(win->addr[z - 1], fd);
-			z = z - 4;
+			ft_putchar_fd(win->addr[z], fd);
+			ft_putchar_fd(win->addr[z + 1], fd);
+			ft_putchar_fd(win->addr[z + 2], fd);
+			z = z + 4;
 			x++;
 		}
+		if (extrabytes)
+			put_extrabytes(extrabytes, fd);
 		y--;
 	}
 }
@@ -56,8 +70,12 @@ int	screenshot(t_win *win)
 {
 	unsigned int	headers[13];
 	int				fd;
+	int				extrabytes;
 
-	headers[0] = win->height * win->width * 4 + 54;
+	extrabytes = 4 - ((win->width * 3) % 4);
+	if (extrabytes == 4)
+		extrabytes = 0;
+	headers[0] = ((win->width * 3) + extrabytes) * win->height + 54;
 	headers[1] = 0;
 	headers[2] = 54;
 	headers[3] = 40;
@@ -71,7 +89,7 @@ int	screenshot(t_win *win)
 	headers[12] = 0;
 	fd = open("screen.bmp", O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU | S_IROTH);
 	put_bmp_header(headers, fd);
-	put_bmp_pixels(win, fd);
+	put_bmp_pixels(win, fd, extrabytes);
 	close(fd);
 	return (1);
 }

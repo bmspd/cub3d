@@ -1,5 +1,5 @@
 R 1024 768
-   F        216     ,     191    ,    216
+   F        155     ,     17   ,    30
     C     255     ,     192     , 255
 WE ./textures/ROCKRED3.xpm
 EA ./textures/SP_ROCK2.xpm
