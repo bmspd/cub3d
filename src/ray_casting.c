@@ -54,10 +54,10 @@ void	perpendicular_wall_distance(t_win *win)
 {
 	if (win->ray->side == 0)
 		win->ray->perp_wall_dist = (win->ray->map_x - win->player->posx
-				+ (1 - win->ray->step_x) / 2) / win->ray->ray_dir_x;
+				+ (double)(1 - win->ray->step_x) / 2) / win->ray->ray_dir_x;
 	else
 		win->ray->perp_wall_dist = (win->ray->map_y - win->player->posy
-				+ (1 - win->ray->step_y) / 2) / win->ray->ray_dir_y;
+				+ (double)(1 - win->ray->step_y) / 2) / win->ray->ray_dir_y;
 }
 
 void	draw_pixel_lines(t_win *win, int x)
@@ -75,14 +75,14 @@ void	draw_pixel_lines(t_win *win, int x)
 	else
 		win->ray->wall_x = win->player->posx
 			+ win->ray->perp_wall_dist * win->ray->ray_dir_x;
-	win->ray->wall_x -= floor((win->ray->wall_x));
+	win->ray->wall_x -= floor(win->ray->wall_x);
 	if (win->ray->side == 0 && win->ray->ray_dir_x > 0)
 		draw_texture(win, x, win->texture_east);
 	else if (win->ray->side == 0 && win->ray->ray_dir_x < 0)
 		draw_texture(win, x, win->texture_west);
 	else if (win->ray->side == 1 && win->ray->ray_dir_y > 0)
 		draw_texture(win, x, win->texture_south);
-	else
+	else if (win->ray->side == 1 && win->ray->ray_dir_y < 0)
 		draw_texture(win, x, win->texture_north);
 }
 

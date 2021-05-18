@@ -74,5 +74,5 @@ void	set_player_pos(t_win *win, t_list *head, char **check_map)
 		i++;
 	}
 	if (counter != 1)
-		invalid_data_error(0);
+		invalid_data_error(3);
 }

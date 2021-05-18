@@ -7,10 +7,6 @@ void	draw_texture(t_win *win, int x, t_tex *tex)
 	int	b;
 
 	tex->tex_x = (int)(win->ray->wall_x * (double)(tex->tex_width));
-	if (win->ray->side == 0 && win->ray->ray_dir_x > 0)
-		tex->tex_x = tex->tex_width - tex->tex_x - 1;
-	if (win->ray->side == 1 && win->ray->ray_dir_x < 0)
-		tex->tex_x = tex->tex_width - tex->tex_x - 1;
 	tex->step = 1.0 * tex->tex_height /win->ray->line_height;
 	tex->tex_pos = (win->ray->draw_start - win->height / 2
 			+ win->ray->line_height / 2) * tex->step;
