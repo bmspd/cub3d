@@ -20,6 +20,7 @@ typedef struct s_player
 	double	posx;
 	double	posy;
 	double	speed;
+	double	rot_speed;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
@@ -102,6 +103,13 @@ typedef struct s_win {
 	int			p_height;
 	int			p_width;
 	int			x;
+	int			flag;
+	int 		flag_lrot;
+	int 		flag_rrot;
+	int			flag_w;
+	int 		flag_s;
+	int			flag_d;
+	int 		flag_a;
 	t_player	*player;
 	t_ray		*ray;
 	t_map		*map;
@@ -175,9 +183,17 @@ void	dda_algorithm(t_win *win);
 void	perpendicular_wall_distance(t_win *win);
 void	draw_pixel_lines(t_win *win, int x);
 
-int	check_empty_string(char *string, t_win *win);
+int		check_empty_string(char *string, t_win *win);
 
-int is_space(char c);
+int 	is_space(char c);
 
-void pass_tabs(char **string, t_win *win);
+void 	pass_tabs(char **string, t_win *win);
+
+int 	key_release(int keycode, t_win *win);
+void	key_move_forward_back(t_win *win);
+void	key_move_sides(t_win *win);
+void	key_left_rotating(t_win *win);
+void	key_right_rotating(t_win *win);
+void	ray_calculations(t_win *win);
+int	x_destroy(void);
 #endif

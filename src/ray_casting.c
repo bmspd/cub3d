@@ -92,18 +92,13 @@ int	main_cycle(t_win *win)
 	win->img = mlx_new_image(win->mlx, (int)win->width, (int)win->height);
 	win->addr = mlx_get_data_addr(win->img,
 			&win->bits_per_pixel, &win->line_length, &win->endian);
+	key_move_forward_back(win);
+	key_move_sides(win);
+	key_left_rotating(win);
+	key_right_rotating(win);
 	while (win->x < win->width)
 	{
-		win->ray->camera_x = 2 * win->x / (double)win->width - 1;
-		win->ray->ray_dir_x = win->player->dir_x
-			+ win->player->plane_x * win->ray->camera_x;
-		win->ray->ray_dir_y = win->player->dir_y
-			+ win->player->plane_y * win->ray->camera_x;
-		win->ray->map_x = (int) win->player->posx;
-		win->ray->map_y = (int) win->player->posy;
-		win->ray->delta_dist_x = fabs(1 / win->ray->ray_dir_x);
-		win->ray->delta_dist_y = fabs(1 / win->ray->ray_dir_y);
-		win->ray->hit = 0;
+		ray_calculations(win);
 		calculate_side_dist(win);
 		dda_algorithm(win);
 		perpendicular_wall_distance(win);

@@ -12,12 +12,6 @@ void	read_by_lines(int fd, t_list **head)
 	ft_lstadd_back(head, ft_lstnew(line));
 }
 
-int	x_destroy(void)
-{
-	printf("Exiting from Cub3D...\n");
-	exit(0);
-}
-
 void	resize_window(t_win *win)
 {
 	if (win->p_height < win->height)
@@ -32,6 +26,13 @@ void	open_file(int *fd, char **argv, t_list **head)
 	if (*fd == -1)
 		invalid_data_error(1);
 	read_by_lines(*fd, head);
+}
+
+void	mlx_hook_base(t_win *win)
+{
+	mlx_hook(win->win, 2, 1L << 0, key_press, win);
+	mlx_hook(win->win, 3, 1l << 1, key_release, win);
+	mlx_hook(win->win, 17, 1L < 17, x_destroy, win);
 }
 
 int	main(int argc, char **argv)
@@ -56,8 +57,7 @@ int	main(int argc, char **argv)
 		main_cycle(win);
 	resize_window(win);
 	win->win = mlx_new_window(win->mlx, win->width, win->height, "cub3D");
-	mlx_hook(win->win, 2, 1L << 0, key_press, win);
-	mlx_hook(win->win, 17, 1L < 17, x_destroy, win);
+	mlx_hook_base(win);
 	mlx_loop_hook(win->mlx, main_cycle, win);
 	mlx_loop(win->mlx);
 	close(fd);

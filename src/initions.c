@@ -9,7 +9,8 @@ void	init_player(t_win *win)
 	win->player->dir_y = 0;
 	win->player->plane_x = 0;
 	win->player->plane_y = 0.66;
-	win->player->speed = 0.5;
+	win->player->speed = 0.1;
+	win->player->rot_speed = 0.035;
 }
 
 void	init_map(t_win *win)

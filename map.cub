@@ -1,4 +1,4 @@
-R 1024 600
+R 1024 768
    F        216     ,     191    ,    216
     C     255     ,     192     , 255
 WE ./textures/wood.xpm
@@ -7,7 +7,7 @@ EA ./textures/new_wall.xpm
 
 
 
-NO ../textures/eagle.png
+NO ./textures/eagle.png
 SO ./textures/eagle.xpm
 
 
