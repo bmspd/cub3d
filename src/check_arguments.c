@@ -19,7 +19,7 @@ void	check_arguments(int argc, char **argv)
 		}
 		if (i == 0)
 			invalid_data_error(1);
-		if (ft_strncmp(&argv[1][i], ".cub", 4))
+		if (ft_strncmp(&argv[1][i], ".cub", 5))
 			invalid_data_error(1);
 	}
 	else if (argc == 3 && ft_strncmp(argv[2], "--save", 7))
