@@ -31,8 +31,8 @@ void	open_file(int *fd, char **argv, t_list **head)
 void	mlx_hook_base(t_win *win)
 {
 	mlx_hook(win->win, 2, 1L << 0, key_press, win);
-	mlx_hook(win->win, 3, 1l << 1, key_release, win);
-	mlx_hook(win->win, 17, 1L < 17, x_destroy, win);
+	mlx_hook(win->win, 3, 1L << 1, key_release, win);
+	mlx_hook(win->win, 17, 1L << 17, x_destroy, win);
 }
 
 int	main(int argc, char **argv)
